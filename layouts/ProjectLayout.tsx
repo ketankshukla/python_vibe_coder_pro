@@ -11,6 +11,7 @@ import SearchIcon from '@/components/SearchIcon'
 import siteMetadata from '@/data/siteMetadata'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Card from '@/components/Card'
 
 // Simple search icon component
 // const SearchIcon = () => (
@@ -80,56 +81,21 @@ export default function ProjectLayout({
   children,
 }: Props) {
   const displayProjects = initialDisplayProjects.length > 0 ? initialDisplayProjects : projects
-  const [selectedTag, setSelectedTag] = useState<string | null>(null)
-  const [selectedType, setSelectedType] = useState<string | null>(null)
-  const [selectedStatus, setSelectedStatus] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
 
-  // Get all unique tags and their counts
-  const tagCounts = projects.reduce((acc, project) => {
-    (project.tags || []).forEach(tag => {
-      acc[tag] = (acc[tag] || 0) + 1
-    })
-    return acc
-  }, {} as Record<string, number>)
-
-  // Get all unique tags
-  const allTags = [...new Set(projects.flatMap((project) => project.tags || []))]
-
-  // Filter projects based on search and selected filters
+  // Filter projects based on search
   const filteredProjects = displayProjects.filter((project) => {
     const searchLower = searchQuery.toLowerCase()
     const titleMatch = project.title.toLowerCase().includes(searchLower)
     const descriptionMatch = project.description.toLowerCase().includes(searchLower)
-    const tagsMatch = project.tags?.some(tag => tag.toLowerCase().includes(searchLower))
-    const tagFilter = !selectedTag || project.tags?.includes(selectedTag)
-    const typeFilter = selectedType === null || project.type === selectedType
-    const statusFilter = selectedStatus === null || project.status === selectedStatus
+    const featuresMatch = project.features?.some(feature => feature.toLowerCase().includes(searchLower))
 
-    return (titleMatch || descriptionMatch || tagsMatch) && tagFilter && typeFilter && statusFilter
+    return titleMatch || descriptionMatch || featuresMatch
   })
-
-  const handleTagClick = (tag: string) => {
-    setSelectedTag(tag === 'All Projects' ? null : tag)
-  }
-
-  const handleTypeClick = (type: string) => {
-    setSelectedType(type === 'All Types' ? null : type)
-  }
-
-  const handleStatusClick = (status: string) => {
-    setSelectedStatus(status === 'All Status' ? null : status)
-  }
 
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            <span className="text-[#FFD43B] dark:text-[#FFD43B]">Pro</span>
-            <span className="text-[#306998] dark:text-[#306998]">jects</span>
-          </h1>
-        </div>
         <div className="container py-12">
           <div className="mb-6">
             <div className="relative">
@@ -147,95 +113,23 @@ export default function ProjectLayout({
               />
             </div>
           </div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {/* Filters Column */}
-            <div className="lg:col-span-1 space-y-6">
-              <div>
-                <h2 className="text-lg font-semibold mb-2">Tags</h2>
-                <div className="flex flex-wrap gap-2">
-                  <Tag text="All Projects" index={-1} onClick={() => handleTagClick('All Projects')} />
-                  {allTags.map((tag, index) => (
-                    <Tag 
-                      key={tag} 
-                      text={`${tag} (${tagCounts[tag]})`} 
-                      index={index} 
-                      onClick={() => handleTagClick(tag)} 
-                    />
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h2 className="text-lg font-semibold mb-2">Project Types</h2>
-                <div className="flex flex-wrap gap-2">
-                  <Tag text="All Types" index={-2} onClick={() => handleTypeClick('All Types')} />
-                  <Tag text="Personal" index={0} onClick={() => handleTypeClick('Personal')} />
-                  <Tag text="Work" index={1} onClick={() => handleTypeClick('Work')} />
-                  <Tag text="Client" index={2} onClick={() => handleTypeClick('Client')} />
-                </div>
-              </div>
-              <div>
-                <h2 className="text-lg font-semibold mb-2">Project Status</h2>
-                <div className="flex flex-wrap gap-2">
-                  <Tag text="All Status" index={-3} onClick={() => handleStatusClick('All Status')} />
-                  <Tag text="Active" index={0} onClick={() => handleStatusClick('Active')} />
-                  <Tag text="Completed" index={1} onClick={() => handleStatusClick('Completed')} />
-                </div>
-              </div>
-            </div>
-            {/* Projects Columns */}
-            <div className="lg:col-span-2">
-              <div className="grid gap-6 md:grid-cols-2">
-                {filteredProjects.map((project) => {
-                  const { title, description, href, date, tags, techStack, status, type } = project
-                  return (
-                    <article key={title} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
-                      <div className="p-6">
-                        <div className="flex flex-col gap-4">
-                          <div>
-                            <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                              <Link href={href} target="_blank" rel="noopener noreferrer" className="text-gray-900 dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-300">
-                                {title}
-                              </Link>
-                            </h3>
-                            <p className="mt-2 text-gray-500 dark:text-gray-400 line-clamp-2">
-                              {description}
-                            </p>
-                            <div className="flex items-center gap-2 mt-4">
-                              {date && (
-                                <span className="text-sm text-gray-500 dark:text-gray-400">
-                                  {formatDate(date)}
-                                </span>
-                              )}
-                              <div className="h-2" /> {/* Spacer div */}
-                            </div>
-                          </div>
-                          {tags && tags.length > 0 && (
-                            <div className="flex flex-wrap gap-2 mb-4">
-                              {tags.map((tag, index) => (
-                                <Tag
-                                  key={index}
-                                  text={tag}
-                                  index={index}
-                                />
-                              ))}
-                            </div>
-                          )}
-                          <div className="flex flex-wrap gap-2">
-                            {techStack?.map((tech, index) => (
-                              <Tag
-                                key={index}
-                                text={tech}
-                                index={index}
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                  )
-                })}
-              </div>
-            </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {filteredProjects.map((project) => {
+              const { title, description, href, date, features, techStack, status, type } = project
+              return (
+                <Card
+                  key={title}
+                  title={title}
+                  description={description}
+                  href={href}
+                  date={date ? formatDate(date) : undefined}
+                  features={features}
+                  techStack={techStack}
+                  status={status}
+                  type={type}
+                />
+              )
+            })}
           </div>
         </div>
       </div>
