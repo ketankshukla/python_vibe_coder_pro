@@ -78,7 +78,7 @@ const Card = ({ title, description, imgSrc, href, features, techStack, status, t
           </p>
         )}
         <div className="mb-4">
-          <h3 className="text-sm font-semibold mb-2 text-yellow-600 dark:text-yellow-400">Project Status & Type</h3>
+          <h3 className="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Project Status & Type</h3>
           <div className="flex items-center gap-2 mb-4">
             {status && (
               <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[status] ?? 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'}`}>
@@ -92,35 +92,39 @@ const Card = ({ title, description, imgSrc, href, features, techStack, status, t
             )}
           </div>
         </div>
-        <p className="prose text-white dark:text-white mb-4 leading-relaxed">
+        <p className="prose text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
           {description}
         </p>
-        {features?.length && (
-          <div className="mb-4">
-            <h3 className="text-sm font-semibold mb-2 text-yellow-600 dark:text-yellow-400">Features</h3>
-            <div className="flex flex-wrap gap-2">
-              {features.map((feature, index) => (
-                <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200">
-                  {feature}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-        {techStack?.length && (
-          <div>
-            <h3 className="text-sm font-semibold mb-2 text-yellow-600 dark:text-yellow-400">Tech Stack</h3>
-            <div className="flex flex-wrap gap-2">
-              {techStack.map((tech, index) => (
-                <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                  {tech}
-                </span>
-              ))}
-            </div>
+        {(features?.length || techStack?.length) && (
+          <div className="space-y-4">
+            {features?.length && (
+              <div>
+                <h3 className="text-sm font-semibold mb-2 text-yellow-600 dark:text-yellow-400">Features</h3>
+                <div className="flex flex-wrap gap-2">
+                  {features.map((feature, index) => (
+                    <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200">
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            {techStack?.length && (
+              <div>
+                <h3 className="text-sm font-semibold mb-2 text-yellow-600 dark:text-yellow-400">Tech Stack</h3>
+                <div className="flex flex-wrap gap-2">
+                  {techStack.map((tech, index) => (
+                    <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
         {tags?.length && (
-          <div>
+          <div className="mt-4">
             <h3 className="text-sm font-semibold mb-2 text-yellow-600 dark:text-yellow-400">{type === 'Blog' ? 'Categories' : 'Tags'}</h3>
             <div className="flex flex-wrap gap-2">
               {tags.map((tag, index) => (

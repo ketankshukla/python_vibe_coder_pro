@@ -12,6 +12,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Card from '@/components/Card'
+import SearchBar from '@/components/SearchBar'
 
 interface PaginationProps {
   totalPages: number
@@ -89,26 +90,12 @@ export default function BlogLayout({
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="container py-12">
-          <div className="mb-6">
+        <div className="container py-6">
+          <div className="mb-4">
             <div className="relative">
               <div className="flex items-center">
                 <div className="flex-1">
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full px-3 py-1.5 text-sm rounded-md border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-[#FFD43B] dark:focus:ring-[#FFD43B] focus:border-transparent dark:bg-gray-800"
-                  />
-                  {searchQuery && (
-                    <button
-                      onClick={() => setSearchQuery('')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 hover:text-[#FFD43B] dark:hover:text-[#FFD43B]"
-                    >
-                      <SearchIcon className="h-5 w-5" />
-                    </button>
-                  )}
+                  <SearchBar onSearch={setSearchQuery} />
                 </div>
               </div>
             </div>
