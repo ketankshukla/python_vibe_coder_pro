@@ -56,21 +56,6 @@ const Card = ({ title, description, imgSrc, href, features, techStack, status, t
         </div>
       )}
       <div className="p-6">
-        <div className="mb-4">
-          <h3 className="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Project Status & Type</h3>
-          <div className="flex items-center gap-2 mb-4">
-            {status && (
-              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[status] ?? 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'}`}>
-                {status}
-              </span>
-            )}
-            {type && (
-              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${typeColors[type] ?? 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'}`}>
-                {type}
-              </span>
-            )}
-          </div>
-        </div>
         <h2 className="mb-2 text-2xl font-bold leading-8 tracking-tight">
           {href ? (
             <Link href={href} aria-label={`Link to ${title}`} className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-700 dark:hover:text-yellow-300 transition-colors duration-200">
@@ -89,7 +74,22 @@ const Card = ({ title, description, imgSrc, href, features, techStack, status, t
             })}
           </p>
         )}
-        <p className="prose text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+        <div className="mb-4">
+          <h3 className="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Project Status & Type</h3>
+          <div className="flex items-center gap-2 mb-4">
+            {status && (
+              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[status] ?? 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'}`}>
+                {status}
+              </span>
+            )}
+            {type && (
+              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${typeColors[type] ?? 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'}`}>
+                {type}
+              </span>
+            )}
+          </div>
+        </div>
+        <p className="prose text-white dark:text-white mb-4 leading-relaxed">
           {description}
         </p>
         {features?.length && (
