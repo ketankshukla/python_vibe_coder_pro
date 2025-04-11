@@ -1,13 +1,13 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Ketan Shukla | Portfolio',
+  title: 'Ketan Shukla | Python ETL Portfolio',
   author: 'Ketan Shukla',
   headerTitle: 'Ketan Shukla Portfolio',
-  description: 'Python Full Stack Engineer specializing in Django and FastAPI development',
+  description: 'Python ETL Developer',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://ketanshukla.com',
-  siteRepo: 'https://github.com/ketankshukla/portfolio-new',
+  siteRepo: 'https://github.com/ketankshukla/python_vibe_coder_pro',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   email: 'resume@ketankshukla.com',
@@ -34,7 +34,7 @@ const siteMetadata = {
   comments: {
     provider: 'giscus',
     giscusConfig: {
-      repo: 'ketankshukla/ketan-portfolio',
+      repo: 'ketankshukla/python_vibe_coder_pro',
       repositoryId: 'R_kgDONbPxKA',
       category: 'General',
       categoryId: 'DIC_kwDONbPxKM4ClEyF',
