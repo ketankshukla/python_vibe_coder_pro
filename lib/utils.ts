@@ -1,6 +1,6 @@
 import type { Blog } from 'contentlayer/generated'
 
-export function sortBlogPostsByDateAndTime(posts: any[]): any[] {
+export function sortBlogPostsByDateAndTime(posts: Blog[]): Blog[] {
   return posts.sort((a, b) => {
     // Parse dates to include time information
     const dateA = new Date(a.date)

@@ -1,6 +1,7 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
+import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { slug } from 'github-slugger'
 import { formatDateTime } from '@/lib/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
@@ -69,11 +70,26 @@ export default function ListLayoutWithTags({
   pagination,
 }: ListLayoutProps) {
   const pathname = usePathname()
+  const router = useRouter()
+  const [searchQuery, setSearchQuery] = useState('')
+
+  // Filter posts based on search query
+  const filteredPosts = posts.filter((post) => {
+    const searchTerms = searchQuery.toLowerCase()
+    return (
+      post.title.toLowerCase().includes(searchTerms) ||
+      post.summary?.toLowerCase().includes(searchTerms) ||
+      (post.tags?.some((tag) => tag.toLowerCase().includes(searchTerms)) ?? false)
+    )
+  })
+
+  // If there's a search query, show all filtered results
+  // Otherwise, use the initial display posts (with pagination)
+  const displayPosts = searchQuery ? filteredPosts : initialDisplayPosts
+
   const tagCounts = tagData as Record<string, number>
   const tagKeys = Object.keys(tagCounts)
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
-
-  const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
   return (
     <>
@@ -82,6 +98,41 @@ export default function ListLayoutWithTags({
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:hidden sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             {title}
           </h1>
+        </div>
+        <div className="mb-6">
+          <div className="relative">
+            <div className="absolute left-3 top-1/2 -translate-y-1/2">
+              <svg className="w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => {
+                const query = e.target.value
+                setSearchQuery(query)
+                // Reset pagination when search query changes
+                if (query) {
+                  router.push(`/blog`)
+                }
+              }}
+              placeholder="Search posts..."
+              className="w-full pl-10 pr-10 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FFD43B] dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:focus:ring-[#FFD43B]"
+            />
+            <button
+              type="button"
+              onClick={() => {
+                setSearchQuery('')
+                router.push(`/blog`)
+              }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-400"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
         <div className="flex sm:space-x-24">
           <div className="hidden h-full max-h-screen min-w-[280px] max-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md dark:bg-gray-900/70 dark:shadow-gray-800/40 sm:flex">
@@ -160,11 +211,14 @@ export default function ListLayoutWithTags({
                 )
               })}
             </ul>
-            {pagination && pagination.totalPages > 1 && (
-              <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
-            )}
           </div>
         </div>
+        {pagination && (
+          <Pagination
+            totalPages={pagination.totalPages}
+            currentPage={pagination.currentPage}
+          />
+        )}
       </div>
     </>
   )
