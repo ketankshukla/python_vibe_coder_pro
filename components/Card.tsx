@@ -78,7 +78,7 @@ const Card = ({ title, description, imgSrc, href, features, techStack, status, t
           </p>
         )}
         <div className="mb-4">
-          <h3 className="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Project Status & Type</h3>
+          <h3 className="text-sm font-semibold mb-2 text-yellow-600 dark:text-yellow-400">Project Status & Type</h3>
           <div className="flex items-center gap-2 mb-4">
             {status && (
               <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[status] ?? 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'}`}>
@@ -97,7 +97,7 @@ const Card = ({ title, description, imgSrc, href, features, techStack, status, t
         </p>
         {features?.length && (
           <div className="mb-4">
-            <h3 className="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Features</h3>
+            <h3 className="text-sm font-semibold mb-2 text-yellow-600 dark:text-yellow-400">Features</h3>
             <div className="flex flex-wrap gap-2">
               {features.map((feature, index) => (
                 <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200">
@@ -109,7 +109,7 @@ const Card = ({ title, description, imgSrc, href, features, techStack, status, t
         )}
         {techStack?.length && (
           <div>
-            <h3 className="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Tech Stack</h3>
+            <h3 className="text-sm font-semibold mb-2 text-yellow-600 dark:text-yellow-400">Tech Stack</h3>
             <div className="flex flex-wrap gap-2">
               {techStack.map((tech, index) => (
                 <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
@@ -121,7 +121,7 @@ const Card = ({ title, description, imgSrc, href, features, techStack, status, t
         )}
         {tags?.length && (
           <div>
-            <h3 className="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Tags</h3>
+            <h3 className="text-sm font-semibold mb-2 text-yellow-600 dark:text-yellow-400">{type === 'Blog' ? 'Categories' : 'Tags'}</h3>
             <div className="flex flex-wrap gap-2">
               {tags.map((tag, index) => (
                 <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
