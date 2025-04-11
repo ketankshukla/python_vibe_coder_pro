@@ -12,21 +12,24 @@ interface CardProps {
   status?: string
   type?: string
   date?: string
+  tags?: string[]
 }
 
-const Card = ({ title, description, imgSrc, href, features, techStack, status, type, date }: CardProps) => {
+const Card = ({ title, description, imgSrc, href, features, techStack, status, type, date, tags }: CardProps) => {
   const [isHovered, setIsHovered] = useState(false)
 
   const statusColors: { [key: string]: string } = {
     Active: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
     Completed: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
     InProgress: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
+    Published: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
   }
 
   const typeColors: { [key: string]: string } = {
     Personal: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
     Work: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
     Client: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
+    Blog: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
   }
 
   return (
@@ -109,20 +112,28 @@ const Card = ({ title, description, imgSrc, href, features, techStack, status, t
             <h3 className="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Tech Stack</h3>
             <div className="flex flex-wrap gap-2">
               {techStack.map((tech, index) => (
-                <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200">
+                <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
                   {tech}
                 </span>
               ))}
             </div>
           </div>
         )}
+        {tags?.length && (
+          <div>
+            <h3 className="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Tags</h3>
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag, index) => (
+                <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
         {href && (
-          <Link
-            href={href}
-            className="mt-4 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-[#FFD43B] hover:bg-[#FFD43B]/90 dark:bg-[#FFD43B] dark:hover:bg-[#FFD43B]/90 rounded-lg shadow-sm transition-colors duration-200"
-            aria-label={`Link to ${title}`}
-          >
-            View Project
+          <Link href={href} className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+            {type === 'Blog' ? 'View Blog' : 'View Project'}
             <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
