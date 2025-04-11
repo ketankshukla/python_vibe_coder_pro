@@ -9,12 +9,14 @@
 
 ## 🚀 About Me
 
-I'm a Python Full Stack Engineer with 2 years of experience in building robust and scalable web applications. My journey in software development has been driven by a passion for creating efficient, maintainable solutions that solve real-world problems.
+I'm a Python ETL Developer based in San Diego, CA, specializing in building data processing pipelines and automation solutions. I have experience in creating ETL pipelines, designing database integrations, and implementing data validation systems through a portfolio of practical projects.
+
+I'm passionate about data engineering and committed to data accuracy and quality. Currently seeking an entry-level ETL Developer position to leverage my technical expertise and passion for data engineering in solving complex business problems.
 
 ### 💻 Technical Expertise
 
 - **Backend Development**:
-
+- 
   - Python (Django, FastAPI)
   - RESTful APIs
   - Microservices Architecture
