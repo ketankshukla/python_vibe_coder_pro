@@ -1,12 +1,15 @@
+'use client'
+
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Image from '@/components/Image'
 import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
-import SearchButton from './SearchButton'
+import { usePathname } from 'next/navigation'
 
 const Header = () => {
+  const pathname = usePathname()
   let headerClass = 'flex items-center w-full bg-white dark:bg-gray-950 justify-between py-10'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0 z-50'
@@ -35,21 +38,23 @@ const Header = () => {
         <div className="no-scrollbar hidden max-w-40 items-center space-x-4 overflow-x-auto sm:flex sm:space-x-6 md:max-w-72 lg:max-w-96">
           {headerNavLinks
             .filter((link) => link.href !== '/')
-            .map((link, index) => (
-              <Link
-                key={link.title}
-                href={link.href}
-                className={`block text-lg font-medium hover:opacity-80 ${
-                  index % 2 === 0
-                    ? 'text-[#FFD43B] dark:text-[#FFD43B]'
-                    : 'text-[#306998] dark:text-[#306998]'
-                }`}
-              >
-                {link.title}
-              </Link>
-            ))}
+            .map((link, index) => {
+              const isActive = pathname === link.href
+              return (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className={`block text-lg font-medium transition-all duration-200 ${
+                    isActive
+                      ? 'bg-[#FFD43B] dark:bg-[#FFD43B] text-blue-600 dark:text-blue-400 px-3 py-1.5 rounded-md'
+                      : 'text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300'
+                  }`}
+                >
+                  {link.title}
+                </Link>
+              )
+            })}
         </div>
-        <SearchButton />
         <ThemeSwitch />
         <MobileNav />
       </div>
