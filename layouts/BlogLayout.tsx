@@ -14,67 +14,27 @@ import { useRouter } from 'next/navigation'
 import Card from '@/components/Card'
 import SearchBar from '@/components/SearchBar'
 
-interface PaginationProps {
-  totalPages: number
-  currentPage: number
-}
+// Pagination interface removed
 
 interface Props {
   posts: CoreContent<Blog>[]
   title: string
   initialDisplayPosts?: CoreContent<Blog>[]
-  pagination?: PaginationProps
+  // pagination prop removed
   children?: React.ReactNode
 }
 
-function Pagination({ totalPages, currentPage }: PaginationProps) {
-  const pathname = usePathname()
-
-  const prevPage = currentPage - 1 > 0
-  const nextPage = currentPage + 1 <= totalPages
-
-  return (
-    <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-      <nav className="flex justify-between">
-        {!prevPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
-            Previous
-          </button>
-        )}
-        {prevPage && (
-          <Link
-            href={currentPage - 1 === 1 ? `${pathname}` : `${pathname}/page/${currentPage - 1}`}
-            rel="prev"
-          >
-            Previous
-          </Link>
-        )}
-        <span>
-          {currentPage} of {totalPages}
-        </span>
-        {!nextPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
-            Next
-          </button>
-        )}
-        {nextPage && (
-          <Link href={`${pathname}/page/${currentPage + 1}`} rel="next">
-            Next
-          </Link>
-        )}
-      </nav>
-    </div>
-  )
-}
+// Pagination component removed
 
 export default function BlogLayout({
   posts,
   title,
   initialDisplayPosts = [],
-  pagination,
+  // pagination removed,
   children,
 }: Props) {
-  const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
+  // Use all posts directly instead of pagination
+  const displayPosts = posts
   const [searchQuery, setSearchQuery] = useState('')
 
   // Filter posts based on search
@@ -116,12 +76,7 @@ export default function BlogLayout({
             ))}
           </div>
 
-          {pagination && (
-            <Pagination
-              totalPages={pagination.totalPages}
-              currentPage={pagination.currentPage}
-            />
-          )}
+          {/* Pagination removed */}
         </div>
       </div>
 

@@ -15,17 +15,14 @@ interface ListLayoutProps {
   posts: CoreContent<Blog>[]
   title: string
   initialDisplayPosts?: CoreContent<Blog>[]
-  pagination?: {
-    totalPages: number
-    currentPage: number
-  }
+  // pagination prop removed
 }
 
 export default function ListLayoutWithTags({
   posts,
   title,
   initialDisplayPosts = [],
-  pagination,
+  // pagination removed,
 }: ListLayoutProps) {
   const pathname = usePathname()
   const router = useRouter()
@@ -118,7 +115,7 @@ export default function ListLayoutWithTags({
               onChange={(e) => {
                 const query = e.target.value
                 setSearchQuery(query)
-                // Reset pagination when search query changes
+                // Update search results
                 if (query) {
                   router.push(`/blog`)
                 }

@@ -4,27 +4,17 @@ import { allBlogs } from 'contentlayer/generated'
 import { genPageMetadata } from '../seo'
 import { sortBlogPostsByDateAndTime } from '@/lib/utils'
 
-const POSTS_PER_PAGE = 5
+// Posts are now loaded with infinite scrolling
 
 export const metadata = genPageMetadata({ title: 'Blog' })
 
 export default function BlogPage() {
   const posts = allCoreContent(sortBlogPostsByDateAndTime(allBlogs))
-  const pageNumber = 1
-  const initialDisplayPosts = posts.slice(
-    POSTS_PER_PAGE * (pageNumber - 1),
-    POSTS_PER_PAGE * pageNumber
-  )
-  const pagination = {
-    currentPage: pageNumber,
-    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
-  }
+  // No pagination or initial slicing needed for infinite scrolling
 
   return (
     <BlogLayout
       posts={posts}
-      initialDisplayPosts={initialDisplayPosts}
-      pagination={pagination}
       title="Blog"
     />
   )
