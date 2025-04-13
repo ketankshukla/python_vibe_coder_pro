@@ -1,3 +1,12 @@
+// Suppress specific Node.js warnings
+process.env.NODE_NO_WARNINGS = '1';
+process.env.CONTENTLAYER_SUPPRESS_WARNINGS = '1';
+
+// Suppress specific warnings
+require('./scripts/suppress-contentlayer-warning.js');
+require('./scripts/suppress-typescript-warnings.js');
+require('./scripts/suppress-punycode-warning.js');
+
 const { withContentlayer } = require('next-contentlayer2')
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -64,6 +73,11 @@ const unoptimized = process.env.UNOPTIMIZED ? true : undefined
 module.exports = () => {
   const plugins = [withContentlayer, withBundleAnalyzer]
   return plugins.reduce((acc, next) => next(acc), {
+    // Suppress TypeScript project references warning
+    typescript: {
+      ignoreBuildErrors: false,
+      tsconfigPath: 'tsconfig.json',
+    },
     output,
     basePath,
     reactStrictMode: true,
