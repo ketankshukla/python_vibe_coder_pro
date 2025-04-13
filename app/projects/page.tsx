@@ -1,4 +1,4 @@
-npm install -g vercelimport ProjectLayout from '@/layouts/ProjectLayout'
+import ProjectLayout from '@/layouts/ProjectLayout'
 import projectsData from '@/data/projectsData'
 import { genPageMetadata } from 'app/seo'
 
