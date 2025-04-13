@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { slug } from 'github-slugger'
 import { formatDateTime } from '@/lib/formatDate'
@@ -11,56 +11,14 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
 
-interface PaginationProps {
-  totalPages: number
-  currentPage: number
-}
-
 interface ListLayoutProps {
   posts: CoreContent<Blog>[]
   title: string
   initialDisplayPosts?: CoreContent<Blog>[]
-  pagination?: PaginationProps
-}
-
-function Pagination({ totalPages, currentPage }: PaginationProps) {
-  const pathname = usePathname()
-  const basePath = pathname.split('/')[1]
-  const prevPage = currentPage - 1 > 0
-  const nextPage = currentPage + 1 <= totalPages
-
-  return (
-    <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-      <nav className="flex justify-between">
-        {!prevPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
-            Previous
-          </button>
-        )}
-        {prevPage && (
-          <Link
-            href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
-            rel="prev"
-          >
-            Previous
-          </Link>
-        )}
-        <span>
-          {currentPage} of {totalPages}
-        </span>
-        {!nextPage && (
-          <button className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
-            Next
-          </button>
-        )}
-        {nextPage && (
-          <Link href={`/${basePath}/page/${currentPage + 1}`} rel="next">
-            Next
-          </Link>
-        )}
-      </nav>
-    </div>
-  )
+  pagination?: {
+    totalPages: number
+    currentPage: number
+  }
 }
 
 export default function ListLayoutWithTags({
@@ -72,6 +30,10 @@ export default function ListLayoutWithTags({
   const pathname = usePathname()
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
+  const [visiblePosts, setVisiblePosts] = useState<CoreContent<Blog>[]>([])
+  const [postsToShow, setPostsToShow] = useState(10)
+  const [isLoading, setIsLoading] = useState(false)
+  const loaderRef = useRef<HTMLDivElement | null>(null)
 
   // Filter posts based on search query
   const filteredPosts = posts.filter((post) => {
@@ -84,8 +46,52 @@ export default function ListLayoutWithTags({
   })
 
   // If there's a search query, show all filtered results
-  // Otherwise, use the initial display posts (with pagination)
-  const displayPosts = searchQuery ? filteredPosts : initialDisplayPosts
+  // Otherwise, use posts with infinite scrolling
+  const allPostsToUse = searchQuery ? filteredPosts : posts
+  
+  useEffect(() => {
+    setVisiblePosts(allPostsToUse.slice(0, postsToShow))
+  }, [allPostsToUse, postsToShow])
+  
+  // Reset posts to show when search query changes
+  useEffect(() => {
+    setPostsToShow(10)
+  }, [searchQuery])
+  
+  const loadMorePosts = useCallback(() => {
+    if (visiblePosts.length >= allPostsToUse.length) return
+    
+    setIsLoading(true)
+    // Simulate loading delay
+    setTimeout(() => {
+      setPostsToShow(prev => prev + 10)
+      setIsLoading(false)
+    }, 500)
+  }, [visiblePosts.length, allPostsToUse.length])
+  
+  // Set up intersection observer for infinite scrolling
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        const [entry] = entries
+        if (entry.isIntersecting && !isLoading && visiblePosts.length < allPostsToUse.length) {
+          loadMorePosts()
+        }
+      },
+      { threshold: 0.1 }
+    )
+    
+    const currentLoaderRef = loaderRef.current
+    if (currentLoaderRef) {
+      observer.observe(currentLoaderRef)
+    }
+    
+    return () => {
+      if (currentLoaderRef) {
+        observer.unobserve(currentLoaderRef)
+      }
+    }
+  }, [loaderRef, isLoading, loadMorePosts, visiblePosts.length, allPostsToUse.length])
 
   const tagCounts = tagData as Record<string, number>
   const tagKeys = Object.keys(tagCounts)
@@ -178,7 +184,7 @@ export default function ListLayoutWithTags({
           </div>
           <div>
             <ul>
-              {displayPosts.map((post) => {
+              {visiblePosts.map((post) => {
                 const { path, date, title, summary, tags } = post
                 return (
                   <li key={path} className="py-5">
@@ -211,14 +217,25 @@ export default function ListLayoutWithTags({
                 )
               })}
             </ul>
+            {visiblePosts.length < allPostsToUse.length && (
+              <div ref={loaderRef} className="py-4 flex justify-center">
+                {isLoading ? (
+                  <div className="flex items-center justify-center">
+                    <div className="w-6 h-6 border-2 border-t-2 border-[#306998] rounded-full animate-spin"></div>
+                    <span className="ml-2 text-gray-500 dark:text-gray-400">Loading more posts...</span>
+                  </div>
+                ) : (
+                  <button 
+                    onClick={loadMorePosts}
+                    className="px-4 py-2 bg-[#306998] text-white rounded-md hover:bg-[#306998]/90 transition-colors"
+                  >
+                    Load More
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </div>
-        {pagination && (
-          <Pagination
-            totalPages={pagination.totalPages}
-            currentPage={pagination.currentPage}
-          />
-        )}
       </div>
     </>
   )

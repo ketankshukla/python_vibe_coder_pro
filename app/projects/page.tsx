@@ -1,4 +1,4 @@
-import ProjectLayout from '@/layouts/ProjectLayout'
+npm install -g vercelimport ProjectLayout from '@/layouts/ProjectLayout'
 import projectsData from '@/data/projectsData'
 import { genPageMetadata } from 'app/seo'
 
@@ -34,10 +34,6 @@ export default function ProjectsPage() {
       title="Projects"
     >
       <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-        <h1 className="text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-          <span className="text-[#FFD43B] dark:text-[#FFD43B]">Pro</span>
-          <span className="text-[#306998] dark:text-[#306998]">jects</span>
-        </h1>
       </div>
     </ProjectLayout>
   )
