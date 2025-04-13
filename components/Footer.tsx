@@ -16,7 +16,7 @@ export default function Footer() {
           className="text-sm text-gray-500 transition hover:text-gray-600"
           target="_blank"
           rel="noopener noreferrer"
-          href="/static/cv/ketan-shukla-resume-ETL-final.pdf"
+          href="/static/cv/ketan_shukla_ETL_resume.pdf"
           aria-label="download resume pdf"
         >
           <FaFilePdf className="h-8 w-8 text-[#FF0000] hover:text-[#CC0000]" />
@@ -25,7 +25,7 @@ export default function Footer() {
           className="text-sm text-gray-500 transition hover:text-gray-600"
           target="_blank"
           rel="noopener noreferrer"
-          href="/static/cv/ketan-shukla-resume-ETL-final.docx"
+          href="/static/cv/ketan_shukla_ETL_resume.docx"
           aria-label="download resume word"
         >
           <FaFileWord className="h-8 w-8 text-[#2B579A] hover:text-[#1E3F6F]" />
