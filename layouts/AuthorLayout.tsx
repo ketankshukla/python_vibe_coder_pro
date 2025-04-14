@@ -11,11 +11,11 @@ export default function AuthorLayout({ children, content }: Props) {
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
-          <div className="flex flex-col items-center pt-8">
+        <div className="mb-12 items-start space-y-8 sm:space-y-2 md:grid md:grid-cols-3 md:gap-x-8 md:space-y-0">
+          <div className="flex flex-col items-center pb-8 pt-8">
             <ProfileSection />
           </div>
-          <div className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
+          <div className="prose max-w-none pb-8 pt-8 dark:prose-invert md:col-span-2">
             {children}
           </div>
         </div>

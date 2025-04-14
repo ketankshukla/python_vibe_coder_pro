@@ -20,73 +20,73 @@ export interface TimelineItem {
 export const defaultTimelineData: TimelineItem[] = [
   {
     id: 1,
-    year: '2023 - Present',
-    title: 'Senior ETL Developer',
-    company: 'DataFlow Solutions',
-    description: 'Leading the development of enterprise ETL pipelines using Python, Apache Airflow, and AWS services. Reduced data processing time by 40% and implemented real-time data validation.',
-    icon: <FaBriefcase className="h-6 w-6 text-white" />,
+    year: '2025 (Expected)',
+    title: 'Certificate in Data Science',
+    company: 'San Diego City College',
+    description: 'Currently pursuing a certificate in Data Science with a focus on Python for Data Science, Database Management, and Data Visualization.',
+    icon: <FaGraduationCap className="h-6 w-6 text-white" />,
     iconBg: '#306998',
-    skills: ['Python', 'Apache Airflow', 'AWS', 'Data Engineering']
+    skills: ['Python for Data Science', 'Database Management', 'Data Visualization']
   },
   {
     id: 2,
-    year: '2021 - 2023',
-    title: 'Data Engineer',
-    company: 'Tech Innovations Inc.',
-    description: 'Designed and implemented data pipelines for business intelligence and analytics. Created automated workflows for data extraction, transformation, and loading from multiple sources.',
+    year: '2024',
+    title: 'E-commerce Sales ETL Pipeline',
+    company: 'Portfolio Project',
+    description: 'Developed a comprehensive data pipeline for extracting, transforming, and loading e-commerce sales data from multiple platforms and formats. Implemented versatile extractors supporting diverse data sources.',
     icon: <FaDatabase className="h-6 w-6 text-white" />,
     iconBg: '#FFD43B',
-    skills: ['ETL', 'SQL', 'Python', 'Data Modeling']
+    skills: ['Python', 'Pandas', 'SQLAlchemy', 'PyPDF', 'Data Pipelines']
   },
   {
     id: 3,
-    year: '2020',
-    title: 'AWS Certified Data Analytics Specialist',
-    company: 'Certification',
-    description: 'Earned AWS certification demonstrating expertise in designing and implementing AWS services to derive value from data.',
-    icon: <FaCertificate className="h-6 w-6 text-white" />,
+    year: '2024',
+    title: 'Log Analysis System',
+    company: 'Portfolio Project',
+    description: 'Developed a Python-based log analysis system that processes server logs, extracts performance metrics, and identifies potential security threats using regex pattern matching and statistical methods.',
+    icon: <FaCode className="h-6 w-6 text-white" />,
     iconBg: '#306998',
-    skills: ['AWS', 'Big Data', 'Analytics']
+    skills: ['Python', 'regex', 'Pandas', 'SQLite', 'Data Analysis']
   },
   {
     id: 4,
-    year: '2019 - 2021',
-    title: 'Python Developer',
-    company: 'DataCraft Systems',
-    description: 'Developed and maintained Python applications for data processing and analysis. Created RESTful APIs and implemented automated testing frameworks.',
-    icon: <FaPython className="h-6 w-6 text-white" />,
+    year: '2023',
+    title: 'Data Warehouse ETL',
+    company: 'Portfolio Project',
+    description: 'Engineered a modular ETL framework for transferring data from multiple source systems to a central data warehouse with configurable extractors for various data sources.',
+    icon: <FaDatabase className="h-6 w-6 text-white" />,
     iconBg: '#FFD43B',
-    skills: ['Python', 'Django', 'Flask', 'API Development']
+    skills: ['Python', 'ETL', 'Data Warehousing', 'SQL', 'Data Modeling']
   },
   {
     id: 5,
-    year: '2018',
-    title: 'Master of Science in Data Science',
-    company: 'University of Technology',
-    description: 'Graduated with honors. Specialized in data engineering and machine learning. Thesis on optimizing ETL processes for big data applications.',
-    icon: <FaGraduationCap className="h-6 w-6 text-white" />,
+    year: '2023',
+    title: 'COVID-19 ETL Pipeline',
+    company: 'Portfolio Project',
+    description: 'Engineered a comprehensive Python ETL pipeline that extracts COVID-19 data from multiple sources including CSV files, JSON data, REST APIs, and web scraping.',
+    icon: <FaPython className="h-6 w-6 text-white" />,
     iconBg: '#306998',
-    skills: ['Data Science', 'Machine Learning', 'Statistics']
+    skills: ['Python', 'ETL', 'Data Processing', 'API Integration', 'Web Scraping']
   },
   {
     id: 6,
-    year: '2016 - 2018',
-    title: 'Junior Software Developer',
-    company: 'StartUp Innovations',
-    description: 'Developed web applications and internal tools. Gained experience in full-stack development and agile methodologies.',
+    year: '2023',
+    title: 'Financial Market ETL',
+    company: 'Portfolio Project',
+    description: 'Designed and implemented a comprehensive ETL pipeline for processing financial market data from multiple sources with data transformation components that calculate advanced financial metrics.',
     icon: <FaCode className="h-6 w-6 text-white" />,
     iconBg: '#FFD43B',
-    skills: ['JavaScript', 'Python', 'Web Development']
+    skills: ['Python', 'Pandas', 'Financial Data', 'ETL', 'Data Validation']
   },
   {
     id: 7,
-    year: '2016',
-    title: 'Bachelor of Science in Computer Science',
-    company: 'Tech University',
-    description: 'Graduated with distinction. Focus on software engineering and database systems.',
-    icon: <FaBuildingColumns className="h-6 w-6 text-white" />,
+    year: '2023',
+    title: 'Certificate in Python Development',
+    company: 'San Diego City College',
+    description: 'Completed a certificate program in Python Development, focusing on core Python programming concepts and applications.',
+    icon: <FaCertificate className="h-6 w-6 text-white" />,
     iconBg: '#306998',
-    skills: ['Computer Science', 'Algorithms', 'Database Systems']
+    skills: ['Python', 'Programming', 'Software Development']
   }
 ]
 
