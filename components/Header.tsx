@@ -19,16 +19,17 @@ const Header = () => {
     <header className={headerClass}>
       <Link href="/" aria-label={siteMetadata.headerTitle}>
         <div className="flex items-center">
-          <div className="mr-3">
+          <div className="mr-2 sm:mr-3">
             <Image
               src="/static/images/logo.png"
               alt="Logo"
               width={64}
               height={64}
-              className="h-16 w-auto rounded-xl sm:h-12"
+              className="h-10 w-auto rounded-xl sm:h-12 md:h-16"
+              priority
             />
           </div>
-          <div className="text-3xl font-semibold sm:text-2xl md:text-3xl">
+          <div className="text-xl font-semibold sm:text-2xl md:text-3xl">
             <span className="text-[#FFD43B] dark:text-[#FFD43B]">Python</span>{''}
             <span className="text-[#306998] dark:text-[#306998]">VibeCoder</span>
           </div>

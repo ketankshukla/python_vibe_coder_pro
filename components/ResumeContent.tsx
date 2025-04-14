@@ -119,16 +119,16 @@ export default function ResumeContent() {
     <div className="space-y-10">
       {/* Header Section */}
       <div className="bg-gradient-to-r from-[#306998] to-[#FFD43B] p-1 rounded-lg shadow-lg header-content">
-        <div className="bg-white dark:bg-gray-900 p-6 rounded-md">
+        <div className="bg-white dark:bg-gray-900 p-4 sm:p-6 rounded-md">
           <div className="text-center md:text-left md:flex md:justify-between md:items-center">
             <div>
-              <h2 className="text-3xl font-bold text-[#306998] dark:text-[#FFD43B]">KETAN SHUKLA</h2>
-              <h3 className="text-xl font-medium mt-1 text-gray-700 dark:text-gray-300">Python ETL Developer</h3>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#306998] dark:text-[#FFD43B]">KETAN SHUKLA</h2>
+              <h3 className="text-lg sm:text-xl font-medium mt-1 text-gray-700 dark:text-gray-300">Python ETL Developer</h3>
             </div>
             <div className="mt-4 md:mt-0 text-gray-600 dark:text-gray-400 contact-info">
               <p>San Diego, CA</p>
               <p>
-                <a href="mailto:resume@ketankshukla.com" className="text-[#306998] dark:text-[#FFD43B] hover:underline">
+                <a href="mailto:resume@ketankshukla.com" className="text-[#306998] dark:text-[#FFD43B] hover:underline break-all">
                   resume@ketankshukla.com
                 </a>
               </p>
@@ -157,9 +157,9 @@ export default function ResumeContent() {
       </div>
 
       {/* Professional Summary */}
-      <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md border-l-4 border-[#306998] dark:border-[#FFD43B] professional-summary">
-        <h3 className="text-2xl font-bold mb-4 text-[#306998] dark:text-[#FFD43B]">PROFESSIONAL SUMMARY</h3>
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+      <div className="bg-white dark:bg-gray-900 p-4 sm:p-6 rounded-lg shadow-md border-l-4 border-[#306998] dark:border-[#FFD43B] professional-summary">
+        <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-[#306998] dark:text-[#FFD43B]">PROFESSIONAL SUMMARY</h3>
+        <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
           Python ETL Developer focused on data processing, automation, and API development. Some experience in building ETL pipelines, 
           designing database integrations, and implementing data validation systems through a portfolio of 2 practical projects. 
           Some experience with Python libraries for data manipulation, web scraping, and database operations with a strong commitment 
@@ -169,14 +169,14 @@ export default function ResumeContent() {
       </div>
 
       {/* Technical Skills */}
-      <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md border-l-4 border-[#306998] dark:border-[#FFD43B] technical-skills-section resume-section no-page-break">
-        <h3 className="text-2xl font-bold mb-4 text-[#306998] dark:text-[#FFD43B]">TECHNICAL SKILLS</h3>
+      <div className="bg-white dark:bg-gray-900 p-4 sm:p-6 rounded-lg shadow-md border-l-4 border-[#306998] dark:border-[#FFD43B] technical-skills-section resume-section no-page-break">
+        <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-[#306998] dark:text-[#FFD43B]">TECHNICAL SKILLS</h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {/* Data Engineering & ETL */}
           <div className="skill-category">
-            <h4 className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200">Data Engineering & ETL</h4>
-            <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+            <h4 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-800 dark:text-gray-200">Data Engineering & ETL</h4>
+            <ul className="list-disc pl-4 sm:pl-5 space-y-1 text-sm sm:text-base text-gray-700 dark:text-gray-300">
               <li>Data Processing: Pandas, NumPy, Data Transformation, Data Cleaning</li>
               <li>Data Validation: Error Handling, Data Quality Checks, Schema Validation</li>
             </ul>
@@ -184,8 +184,8 @@ export default function ResumeContent() {
 
           {/* Data Integration */}
           <div className="skill-category">
-            <h4 className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200">Data Integration</h4>
-            <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+            <h4 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-800 dark:text-gray-200">Data Integration</h4>
+            <ul className="list-disc pl-4 sm:pl-5 space-y-1 text-sm sm:text-base text-gray-700 dark:text-gray-300">
               <li>Web Scraping: Requests</li>
               <li>API Integration: RESTful APIs, API Authentication</li>
               <li>Document Processing: PyPDF2, JSON/XML Parsing, regex</li>
@@ -194,16 +194,16 @@ export default function ResumeContent() {
 
           {/* Database Technologies */}
           <div className="skill-category">
-            <h4 className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200">Database Technologies</h4>
-            <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+            <h4 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-800 dark:text-gray-200">Database Technologies</h4>
+            <ul className="list-disc pl-4 sm:pl-5 space-y-1 text-sm sm:text-base text-gray-700 dark:text-gray-300">
               <li>SQL: SQLite</li>
             </ul>
           </div>
 
           {/* Development & Tools */}
           <div className="skill-category">
-            <h4 className="text-xl font-semibold mb-3 text-gray-800 dark:text-gray-200">Development & Tools</h4>
-            <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+            <h4 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-800 dark:text-gray-200">Development & Tools</h4>
+            <ul className="list-disc pl-4 sm:pl-5 space-y-1 text-sm sm:text-base text-gray-700 dark:text-gray-300">
               <li>Version Control: Git, GitHub</li>
               <li>Development Environment: Jupyter Notebook, VS Code</li>
               <li>Testing: pytest, unittest</li>
@@ -230,7 +230,7 @@ export default function ResumeContent() {
                 github.com/ketankshukla/financial_market_etl
               </a>
             </div>
-            <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc pl-4 sm:pl-5 space-y-1 text-sm sm:text-base text-gray-700 dark:text-gray-300">
               <li>Designed and implemented a comprehensive ETL pipeline for processing financial market data from multiple sources (CSV, JSON, REST APIs)</li>
               <li>Engineered data transformation components that calculate advanced financial metrics including RSI, MACD, and Bollinger Bands with 99% accuracy</li>
               <li>Created a flexible orchestration system using a task-based architecture with dependency management for reliable pipeline execution</li>
@@ -254,7 +254,7 @@ export default function ResumeContent() {
                 github.com/ketankshukla/covid19_etl
               </a>
             </div>
-            <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc pl-4 sm:pl-5 space-y-1 text-sm sm:text-base text-gray-700 dark:text-gray-300">
               <li>Engineered a comprehensive Python ETL pipeline that extracts COVID-19 data from multiple sources including CSV files, JSON data, REST APIs, and web scraping</li>
               <li>Implemented data transformation modules with standardization for dates, locations, and missing values, ensuring 100% data consistency across disparate sources</li>
               <li>Designed a flexible orchestration system with task scheduling and dependency management for reliable pipeline execution</li>
@@ -279,7 +279,7 @@ export default function ResumeContent() {
                 github.com/ketankshukla/data-warehouse-etl
               </a>
             </div>
-            <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc pl-4 sm:pl-5 space-y-1 text-sm sm:text-base text-gray-700 dark:text-gray-300">
               <li>Engineered a modular ETL framework for transferring data from multiple source systems to a central data warehouse</li>
               <li>Implemented configurable extractors for various data sources including CSV, JSON, XML, and SQL databases</li>
               <li>Developed transformation pipelines with comprehensive data cleaning, normalization, and validation steps</li>
@@ -302,7 +302,7 @@ export default function ResumeContent() {
                 github.com/ketankshukla/log_analysis_system
               </a>
             </div>
-            <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc pl-4 sm:pl-5 space-y-1 text-sm sm:text-base text-gray-700 dark:text-gray-300">
               <li>Developed a Python-based log analysis system that processes server logs, extracts performance metrics, and identifies potential security threats</li>
               <li>Implemented regex pattern matching to extract structured data from unstructured logs with 97% accuracy</li>
               <li>Created an anomaly detection algorithm using statistical methods to identify unusual patterns in server response times</li>
@@ -325,7 +325,7 @@ export default function ResumeContent() {
                 github.com/ketankshukla/ecommerce_etl
               </a>
             </div>
-            <ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc pl-4 sm:pl-5 space-y-1 text-sm sm:text-base text-gray-700 dark:text-gray-300">
               <li>Developed a comprehensive data pipeline for extracting, transforming, and loading e-commerce sales data from multiple platforms and formats</li>
               <li>Implemented versatile extractors supporting diverse data sources including CSV, JSON, Excel, PDF, SQL databases, XML, FTP/SFTP, and email content</li>
               <li>Created transformation modules to calculate key business metrics including sales trends, customer lifetime value, and inventory turnover</li>

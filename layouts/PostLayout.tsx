@@ -45,11 +45,11 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               </div>
             </div>
           </header>
-          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0">
-            <dl className="pb-10 pt-6 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
+          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 md:grid md:grid-cols-4 md:gap-x-6 md:divide-y-0">
+            <dl className="pb-10 pt-6 md:border-b md:border-gray-200 md:pt-11 md:dark:border-gray-700">
               <dt className="sr-only">Authors</dt>
               <dd>
-                <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
+                <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 md:block md:space-x-0 md:space-y-8">
                   {authorDetails.map((author) => (
                     <li className="flex items-center space-x-2" key={author.name}>
                       {author.avatar && (
@@ -83,7 +83,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 </ul>
               </dd>
             </dl>
-            <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
+            <div className="divide-y divide-gray-200 dark:divide-gray-700 md:col-span-3 md:row-span-2 md:pb-0">
               <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">{children}</div>
               {siteMetadata.comments && (
                 <div
@@ -95,13 +95,13 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               )}
             </div>
             <footer>
-              <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
+              <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 md:col-start-1 md:row-start-2 md:divide-y">
                 {tags && tags.length > 0 && (
-                  <div className="py-4 xl:py-8">
+                  <div className="py-4 md:py-8">
                     <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                       Tags
                     </h2>
-                    <div className="flex flex-wrap justify-center gap-2 pt-4 xl:justify-start">
+                    <div className="flex flex-wrap justify-center gap-2 pt-4 md:justify-start">
                       {tags.map((tag) => (
                         <Tag key={tag} text={tag} />
                       ))}
@@ -109,27 +109,36 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   </div>
                 )}
                 {(next || prev) && (
-                  <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
-                    {next && (
-                      <div className="text-right">
-                        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                          Previous Article
-                        </h2>
-                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/blog/${next.slug}`}>{next.title}</Link>
+                  <div className="py-4 xl:py-8">
+                    <h2 className="mb-2 text-center text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 xl:text-left">
+                      Article Navigation
+                    </h2>
+                    <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:justify-between">
+                      {prev && (
+                        <div className="w-full sm:w-1/2 sm:pr-2">
+                          <div className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                            <h3 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                              Next Article
+                            </h3>
+                            <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 truncate">
+                              <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                    {prev && (
-                      <div>
-                        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                          Next Article
-                        </h2>
-                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
+                      )}
+                      {next && (
+                        <div className="w-full sm:w-1/2 sm:pl-2">
+                          <div className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-right">
+                            <h3 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                              Previous Article
+                            </h3>
+                            <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 truncate">
+                              <Link href={`/blog/${next.slug}`}>{next.title}</Link>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
