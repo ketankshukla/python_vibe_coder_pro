@@ -1,5 +1,5 @@
 import { genPageMetadata } from 'app/seo'
-import ResumeContent from '@/components/ResumeContent'
+import ResumeContent from '../../components/ResumeContent'
 
 export const metadata = genPageMetadata({ title: 'Resume' })
 

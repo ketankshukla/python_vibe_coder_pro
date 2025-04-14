@@ -344,10 +344,10 @@ export default function ResumeContent() {
         <h3 className="text-2xl font-bold mb-4 text-[#306998] dark:text-[#FFD43B]">EDUCATION</h3>
         
         <div className="education-item">
-          <h4 className="text-xl font-semibold text-gray-800 dark:text-gray-200">University of California San Diego (UCSD)</h4>
+          <h4 className="text-xl font-semibold text-gray-800 dark:text-gray-200">San Diego City College</h4>
           <ul className="list-disc pl-5 space-y-1 mt-2 text-gray-700 dark:text-gray-300">
             <li>Certificate in Python Development (Completed)</li>
-            <li>Certificate in Data Science (Ongoing)</li>
+            <li>Certificate in Data Science (Expected June 2025)</li>
             <li>Core Focus: Python for Data Science, Database Management, Data Visualization</li>
           </ul>
         </div>
@@ -376,7 +376,7 @@ export default function ResumeContent() {
               
               // Copy the current document's content to the iframe
               iframeDoc.open();
-              iframeDoc.write('<html><head>');
+              iframeDoc.write('<html><head><title>Ketan_Shukla_Resume</title>');
               
               // Add print-specific styles directly in the iframe
               iframeDoc.write(`
