@@ -16,12 +16,10 @@ import siteMetadata from '@/data/siteMetadata'
 interface LayoutProps {
   content: CoreContent<Blog>
   authorDetails: CoreContent<Authors>[]
-  next?: { slug: string; title: string; path?: string }
-  prev?: { slug: string; title: string; path?: string }
   children: ReactNode
 }
 
-export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
+export default function PostLayout({ content, authorDetails, children }: LayoutProps) {
   const { filePath, path, slug, date, title, tags } = content
   const basePath = path.split('/')[0]
 
@@ -107,39 +105,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     </div>
                   </div>
                 )}
-                {(next || prev) && (
-                  <div className="py-4 xl:py-8">
-                    <h2 className="mb-2 text-center text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 xl:text-left">
-                      Article Navigation
-                    </h2>
-                    <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:justify-between">
-                      {prev && (
-                        <div className="w-full sm:w-1/2 sm:pr-2">
-                          <div className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                            <h3 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                              Next Article
-                            </h3>
-                            <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 truncate">
-                              <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                      {next && (
-                        <div className="w-full sm:w-1/2 sm:pl-2">
-                          <div className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-right">
-                            <h3 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                              Previous Article
-                            </h3>
-                            <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 truncate">
-                              <Link href={`/blog/${next.slug}`}>{next.title}</Link>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
+
               </div>
             </footer>
           </div>

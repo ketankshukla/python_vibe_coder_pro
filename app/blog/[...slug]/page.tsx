@@ -80,8 +80,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     return notFound()
   }
 
-  const prev = sortedCoreContents[postIndex + 1]
-  const next = sortedCoreContents[postIndex - 1]
+  // Navigation removed as requested
   const post = allBlogs.find((p) => p.slug === slug) as Blog
   if (!post) {
     return notFound()
@@ -117,7 +116,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {post.body && post.body.code && (
-        <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
+        <Layout content={mainContent} authorDetails={authorDetails}>
           <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
         </Layout>
       )}
