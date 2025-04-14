@@ -14,8 +14,11 @@ import TestimonialsSection from '@/components/TestimonialsSection'
 import NewsletterSection from '@/components/NewsletterSection'
 
 export default function Home({ posts }) {
-  // Get top 2 blog posts
-  const topPosts = posts.slice(0, 2)
+  // Get top 2 blog posts and ensure they have proper URLs
+  const topPosts = posts.slice(0, 2).map(post => ({
+    ...post,
+    href: `/blog/${post.slug}`
+  }))
   
   // Get top 2 projects
   const topProjects = projectsData.slice(0, 2)
