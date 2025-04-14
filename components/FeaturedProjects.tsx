@@ -31,11 +31,11 @@ export default function FeaturedProjects({
 
   return (
     <div className="mb-16 rounded-xl bg-white p-8 shadow-md dark:bg-gray-800">
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">{title}</h2>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">{title}</h2>
         <Link
           href={viewAllLink}
-          className="text-[#306998] hover:text-[#306998]/80 dark:text-[#FFD43B] dark:hover:text-[#FFD43B]/80 inline-flex items-center"
+          className="text-[#306998] hover:text-[#306998]/80 dark:text-[#FFD43B] dark:hover:text-[#FFD43B]/80 inline-flex items-center self-end sm:self-auto text-sm sm:text-base py-1 px-3 border border-[#306998] dark:border-[#FFD43B] rounded-md hover:bg-[#306998]/10 dark:hover:bg-[#FFD43B]/10 transition-colors"
         >
           View All <FaArrowRight className="ml-1" />
         </Link>
