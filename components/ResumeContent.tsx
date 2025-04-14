@@ -366,8 +366,13 @@ export default function ResumeContent() {
               iframe.style.display = 'none';
               document.body.appendChild(iframe);
               
-              // Get the iframe's document
-              const iframeDoc = iframe.contentWindow.document;
+              // Get the iframe's document with null check
+              const contentWindow = iframe.contentWindow;
+              if (!contentWindow) {
+                console.error('Could not access iframe content window');
+                return;
+              }
+              const iframeDoc = contentWindow.document;
               
               // Copy the current document's content to the iframe
               iframeDoc.open();
@@ -618,8 +623,10 @@ export default function ResumeContent() {
               // Wait for styles to load
               setTimeout(() => {
                 // Print with specific settings
-                iframe.contentWindow.focus();
-                iframe.contentWindow.print();
+                if (iframe.contentWindow) {
+                  iframe.contentWindow.focus();
+                  iframe.contentWindow.print();
+                }
                 
                 // Remove the iframe after printing
                 setTimeout(() => {
