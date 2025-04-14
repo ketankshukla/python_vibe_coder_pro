@@ -54,6 +54,11 @@ input:-webkit-autofill:focus {
   opacity: 1;
 }
 
+/* Hide the first H1 in blog posts since it's already shown in the page header */
+.prose > h1:first-child {
+  display: none;
+}
+
 .linkicon {
   display: inline-block;
   vertical-align: middle;
