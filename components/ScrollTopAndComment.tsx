@@ -39,8 +39,9 @@ const ScrollTopAndComment = ({ alwaysShowScrollDown = false }: ScrollTopAndComme
     setMounted(true)
     
     const checkVisibility = () => {
-      // At top of page: show down arrow, hide up arrow
-      // At bottom of page: show up arrow, hide down arrow
+      // At top of page: show only down arrow
+      // At bottom of page: show only up arrow
+      // In middle: show both arrows
       
       const scrollPosition = window.scrollY || window.pageYOffset
       const windowHeight = window.innerHeight
@@ -49,8 +50,11 @@ const ScrollTopAndComment = ({ alwaysShowScrollDown = false }: ScrollTopAndComme
       const isAtTop = scrollPosition < 100
       const isAtBottom = windowHeight + scrollPosition >= docHeight - 100
       
+      // Show up arrow if not at the top
       setShowScrollTop(!isAtTop)
-      setShowScrollDown(isAtTop && !isAtBottom)
+      
+      // Show down arrow if not at the bottom
+      setShowScrollDown(!isAtBottom)
     }
 
     const handleWindowScroll = () => {
@@ -90,8 +94,11 @@ const ScrollTopAndComment = ({ alwaysShowScrollDown = false }: ScrollTopAndComme
     return null
   }
 
+  // On mobile, adjust the layout when both buttons are visible
+  const showBothButtons = showScrollDown && showScrollTop
+  
   return (
-    <div className={`fixed ${isMobile ? 'bottom-4 right-4' : 'bottom-8 right-8'} flex flex-col gap-3 z-50`}>
+    <div className={`fixed ${isMobile ? 'bottom-4 right-4' : 'bottom-8 right-8'} ${showBothButtons && isMobile ? 'flex-row' : 'flex-col'} flex gap-3 z-50`}>
       {showScrollDown && (
         <button
           aria-label="Scroll to Bottom"
