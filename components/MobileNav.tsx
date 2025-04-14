@@ -76,14 +76,15 @@ const MobileNav = () => {
             <Dialog.Panel className="fixed left-0 top-0 z-70 h-full w-full bg-white opacity-95 duration-300 dark:bg-gray-950 dark:opacity-[0.98]">
               <nav
                 ref={navRef}
-                className="fixed mt-8 h-full w-full overflow-y-auto bg-white px-6 pt-4 dark:bg-gray-900"
+                className="fixed h-[calc(100%-20px)] w-full overflow-y-auto bg-white px-6 pt-4 pb-20 dark:bg-gray-900"
+                style={{ maxHeight: '100vh', overflowY: 'auto' }}
               >
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center pb-24">
                   {headerNavLinks.map((link, index) => (
                     <Link
                       key={link.title}
                       href={link.href}
-                      className={`mb-6 flex w-full items-center justify-center rounded-lg py-3 text-2xl font-bold tracking-wide hover:opacity-80 ${
+                      className={`mb-4 flex w-full items-center justify-center rounded-lg py-3 text-xl font-bold tracking-wide hover:opacity-80 ${
                         index % 2 === 0
                           ? 'bg-gray-100 text-[#FFD43B] dark:bg-gray-800 dark:text-[#FFD43B]'
                           : 'bg-gray-100 text-[#306998] dark:bg-gray-800 dark:text-[#306998]'
@@ -93,7 +94,7 @@ const MobileNav = () => {
                       {link.title}
                     </Link>
                   ))}
-                  <div className="mt-8 w-full">
+                  <div className="mt-6 w-full pb-16">
                     <ProfileSection />
                   </div>
                 </div>
