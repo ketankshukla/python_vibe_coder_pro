@@ -22,24 +22,30 @@ const ProfileSection = () => {
         <SocialIcon kind="github" href={siteMetadata.github} size={7} />
         <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size={7} />
         <SocialIcon kind="x" href={siteMetadata.twitter} size={7} />
-        <a
-          className="text-sm text-gray-500 transition hover:text-gray-600 m-1"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="/static/cv/ketan_shukla_ETL_resume.pdf"
-          aria-label="download resume pdf"
-        >
-          <FaFilePdf className="h-7 w-7 text-[#FF0000] hover:text-[#CC0000]" />
-        </a>
-        <a
-          className="text-sm text-gray-500 transition hover:text-gray-600 m-1"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="/static/cv/ketan_shukla_ETL_resume.docx"
-          aria-label="download resume word"
-        >
-          <FaFileWord className="h-7 w-7 text-[#2B579A] hover:text-[#1E3F6F]" />
-        </a>
+        <div className="flex items-center justify-center">
+          <a
+            className="text-sm text-gray-500 transition hover:text-gray-600"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="/static/cv/ketan_shukla_ETL_resume.pdf"
+            aria-label="download resume pdf"
+            style={{ display: 'flex', alignItems: 'center', height: '1.75rem' }}
+          >
+            <FaFilePdf className="h-7 w-7 text-[#FF0000] hover:text-[#CC0000]" />
+          </a>
+        </div>
+        <div className="flex items-center justify-center">
+          <a
+            className="text-sm text-gray-500 transition hover:text-gray-600"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="/static/cv/ketan_shukla_ETL_resume.docx"
+            aria-label="download resume word"
+            style={{ display: 'flex', alignItems: 'center', height: '1.75rem' }}
+          >
+            <FaFileWord className="h-7 w-7 text-[#2B579A] hover:text-[#1E3F6F]" />
+          </a>
+        </div>
       </div>
     </div>
   )
