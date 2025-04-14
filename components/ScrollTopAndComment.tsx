@@ -8,27 +8,25 @@ interface ScrollTopAndCommentProps {
 }
 
 const ScrollTopAndComment = ({ alwaysShowScrollDown = false }: ScrollTopAndCommentProps) => {
-  const [showCommentButton, setShowCommentButton] = useState(false)
+  // Start with both buttons hidden to avoid hydration mismatch
+  const [mounted, setMounted] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [showScrollDown, setShowScrollDown] = useState(false)
 
   useEffect(() => {
+    // Mark component as mounted
+    setMounted(true)
+    
     const checkVisibility = () => {
-      // Check comments visibility (only on pages with comments)
-      const commentSection = document.getElementById('comment')
-      if (commentSection) {
-        const rect = commentSection.getBoundingClientRect()
-        setShowCommentButton(rect.top > window.innerHeight || rect.bottom < 0)
-      } else {
-        setShowCommentButton(false)
-      }
-
-      // Check scroll position for up arrow
-      setShowScrollTop(window.scrollY > 100)
+      // At top of page: show down arrow, hide up arrow
+      // At bottom of page: show up arrow, hide down arrow
+      // In middle: hide both (we'll handle this differently)
       
-      // Check if we're not at the bottom of the page for down arrow
+      const isAtTop = window.scrollY < 100
       const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100
-      setShowScrollDown(!isAtBottom && (alwaysShowScrollDown || window.scrollY < 100))
+      
+      setShowScrollTop(!isAtTop)
+      setShowScrollDown(isAtTop && !isAtBottom)
     }
 
     const handleWindowScroll = () => {
@@ -44,50 +42,34 @@ const ScrollTopAndComment = ({ alwaysShowScrollDown = false }: ScrollTopAndComme
       window.removeEventListener('scroll', handleWindowScroll)
       window.removeEventListener('resize', checkVisibility)
     }
-  }, [alwaysShowScrollDown])
+  }, [])
 
   const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
   
-  const handleScrollToComment = () => {
-    const commentSection = document.getElementById('comment')
-    if (commentSection) {
-      commentSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
-  
   const handleScrollDown = () => {
     window.scrollTo({ 
-      top: window.scrollY + window.innerHeight * 0.8, 
+      top: document.body.scrollHeight, 
       behavior: 'smooth' 
     })
   }
 
-  if (!showCommentButton && !showScrollTop && !showScrollDown) {
+  // Don't render anything until after client-side hydration is complete
+  if (!mounted) {
+    return null
+  }
+  
+  // Only render if we have at least one button to show
+  if (!showScrollTop && !showScrollDown) {
     return null
   }
 
   return (
     <div className="fixed bottom-8 right-8 flex flex-col gap-3 z-50">
-      {siteMetadata.comments?.provider && showCommentButton && (
-        <button
-          aria-label="Scroll To Comment"
-          onClick={handleScrollToComment}
-          className="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 shadow-md"
-        >
-          <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path
-              fillRule="evenodd"
-              d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-      )}
       {showScrollDown && (
         <button
-          aria-label="Scroll Down"
+          aria-label="Scroll to Bottom"
           onClick={handleScrollDown}
           className="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 shadow-md"
         >
@@ -102,7 +84,7 @@ const ScrollTopAndComment = ({ alwaysShowScrollDown = false }: ScrollTopAndComme
       )}
       {showScrollTop && (
         <button
-          aria-label="Scroll To Top"
+          aria-label="Scroll to Top"
           onClick={handleScrollTop}
           className="rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 shadow-md"
         >

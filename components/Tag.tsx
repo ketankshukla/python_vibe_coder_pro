@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { slug } from 'github-slugger'
+import Link from 'next/link'
 
 interface Props {
   text: string
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const Tag = ({ text, index = 0, onClick, isProjectTag = false }: Props) => {
+  const router = useRouter()
   const tagColor =
     index % 2 === 0
       ? 'text-[#FFD43B] dark:text-[#FFD43B] hover:text-[#FFD43B]/80 dark:hover:text-[#FFD43B]/80'
@@ -20,6 +22,9 @@ const Tag = ({ text, index = 0, onClick, isProjectTag = false }: Props) => {
   const handleClick = () => {
     if (onClick) {
       onClick(text)
+    } else {
+      // Navigate to tag page if no custom onClick handler is provided
+      router.push(`/tags/${slug(text)}`)
     }
   }
 

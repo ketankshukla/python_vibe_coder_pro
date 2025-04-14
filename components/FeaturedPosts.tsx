@@ -49,6 +49,7 @@ export default function FeaturedPosts({
             href={post.href}
             date={post.date}
             tags={post.tags}
+            type="Blog"
           />
         ))}
       </div>

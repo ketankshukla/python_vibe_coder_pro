@@ -106,7 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </SearchProvider>
             <Footer />
           </SectionContainer>
-          <ScrollTopAndComment alwaysShowScrollDown={true} />
+          <ScrollTopAndComment />
         </ThemeProviders>
       </body>
     </html>

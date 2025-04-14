@@ -137,7 +137,7 @@ const Card = ({ title, description, imgSrc, href, features, techStack, status, t
         )}
         {href && (
           <Link href={href} className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
-            {type === 'Blog' ? 'View Blog' : 'View Project'}
+            {type === 'Blog' ? 'Read More' : 'View Project'}
             <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
