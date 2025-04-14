@@ -376,7 +376,7 @@ export default function ResumeContent() {
               
               // Copy the current document's content to the iframe
               iframeDoc.open();
-              iframeDoc.write('<html><head><title>Ketan_Shukla_Resume</title>');
+              iframeDoc.write('<html><head><title>ketan_shukla_python_ETL_resume</title>');
               
               // Add print-specific styles directly in the iframe
               iframeDoc.write(`
