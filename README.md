@@ -1,7 +1,7 @@
 # 👋 Hi, I'm Ketan Shukla
 
 <div align="center">
-  <img src="./public/static/images/avatar.jpg" alt="Ketan Shukla" width="150" height="150" style="border-radius: 20px; object-fit: cover;" />
+  <img src="./public/static/images/avatar.png" alt="Ketan Shukla" width="150" height="150" style="border-radius: 20px; object-fit: cover;" />
   
   [![GitHub](https://img.shields.io/badge/GitHub-ketankshukla-blue?style=flat&logo=github)](https://github.com/ketankshukla)
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-ketankshukla-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/ketankshukla/)

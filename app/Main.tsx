@@ -30,7 +30,7 @@ export default function Home({ posts }) {
         name="Ketan Shukla"
         title="Python Developer & ETL Specialist"
         description="Hi, I'm Ketan Shukla. I specialize in building robust ETL pipelines and data-driven applications using Python. With expertise in data engineering and automation, I help organizations transform raw data into valuable insights."
-        imageSrc="/static/images/avatar.jpg"
+        imageSrc="/static/images/avatar.png"
         email={siteMetadata.email}
         githubUrl={siteMetadata.github}
         linkedinUrl={siteMetadata.linkedin}

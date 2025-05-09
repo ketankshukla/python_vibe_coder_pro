@@ -16,19 +16,19 @@ export const defaultTestimonials: Testimonial[] = [
     quote: "Ketan's ETL expertise transformed our data infrastructure. His Python solutions cut processing time by 60%.",
     author: "Jane Smith",
     position: "CTO, DataTech Solutions",
-    avatar: "/static/images/avatar.jpg"
+    avatar: "/static/images/avatar.png"
   },
   {
     quote: "Working with Ketan on our data pipeline was exceptional. His attention to detail and problem-solving skills are outstanding.",
     author: "Michael Johnson",
     position: "Lead Data Engineer, Analytics Corp",
-    avatar: "/static/images/avatar.jpg"
+    avatar: "/static/images/avatar.png"
   },
   {
     quote: "Ketan delivered a complex ETL system that exceeded our expectations. His code is clean, well-documented, and highly maintainable.",
     author: "Sarah Williams",
     position: "VP of Engineering, DataFlow Inc",
-    avatar: "/static/images/avatar.jpg"
+    avatar: "/static/images/avatar.png"
   }
 ]
 

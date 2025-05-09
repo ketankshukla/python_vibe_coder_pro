@@ -7,7 +7,7 @@ const ProfileSection = () => {
   return (
     <div className="flex flex-col items-center space-y-3 sm:space-y-4">
       <Image
-        src="/static/images/avatar.jpg"
+        src="/static/images/avatar.png"
         alt="avatar"
         width={160}
         height={160}
